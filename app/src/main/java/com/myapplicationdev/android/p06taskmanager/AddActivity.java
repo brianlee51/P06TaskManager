@@ -43,7 +43,6 @@ public class AddActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(AddActivity.this,
                             ScheduledNotificationReceiver.class);
-                    intent.putExtra("name", name);
                     intent.putExtra("desc", desc);
 
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(
