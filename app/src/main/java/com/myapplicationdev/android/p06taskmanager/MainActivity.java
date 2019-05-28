@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         lv = findViewById(R.id.taskListView);
         btnAdd = findViewById(R.id.btnAdd);
 
-        task = new ArrayList<String>();
         DBHelper db = new DBHelper(MainActivity.this);
         tasks = db.getTasks();
         aa = new ArrayAdapter<Task>(this, android.R.layout.simple_list_item_1 ,tasks);
@@ -40,5 +39,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 9);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 9) {
+            DBHelper db = new DBHelper(MainActivity.this);
+            tasks.clear();
+            tasks = db.getTasks();
+            aa = new ArrayAdapter<Task>(this,android.R.layout.simple_list_item_1, tasks);
+            lv.setAdapter(aa);
+        }
     }
 }

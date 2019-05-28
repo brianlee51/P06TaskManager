@@ -38,12 +38,14 @@ public class AddActivity extends AppCompatActivity {
                 } else if (desc.length() == 0) {
                     Toast.makeText(getBaseContext(), "Description cannot be empty", Toast.LENGTH_LONG).show();
                 } else {
+                    DBHelper db = new DBHelper(AddActivity.this);
+                    db.insertTask(name, desc);
                     Calendar cal = Calendar.getInstance();
                     cal.add(Calendar.SECOND, 5);
 
                     Intent intent = new Intent(AddActivity.this,
                             ScheduledNotificationReceiver.class);
-                    intent.putExtra("desc", desc);
+                    intent.putExtra("name", name);
 
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(
                             AddActivity.this, reqCode,
@@ -53,7 +55,8 @@ public class AddActivity extends AppCompatActivity {
                             getSystemService(Activity.ALARM_SERVICE);
                     am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
                             pendingIntent);
-
+                    Toast.makeText(getBaseContext(), "Task Inserted", Toast.LENGTH_LONG).show();
+                    finish();
                 }
             }
         });
