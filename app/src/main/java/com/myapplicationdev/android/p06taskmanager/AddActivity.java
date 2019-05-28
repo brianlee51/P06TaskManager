@@ -15,7 +15,7 @@ import java.util.Calendar;
 
 public class AddActivity extends AppCompatActivity {
 
-    EditText etName, etDesc;
+    EditText etName, etDesc , etTime;
     Button btnAddTask, btnCancel;
     int reqCode = 12345;
 
@@ -25,6 +25,8 @@ public class AddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add);
         etName = findViewById(R.id.editTextName);
         etDesc = findViewById(R.id.editTextDesc);
+        etTime = findViewById(R.id.editTextTime);
+
         btnAddTask = findViewById(R.id.buttonAdd);
         btnCancel = findViewById(R.id.buttonCancel);
 
@@ -33,6 +35,7 @@ public class AddActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String name = etName.getText().toString();
                 String desc = etDesc.getText().toString();
+                String time = etTime.getText().toString();
                 if (name.length() == 0) {
                     Toast.makeText(getBaseContext(), "Name cannot be empty", Toast.LENGTH_LONG).show();
                 } else if (desc.length() == 0) {
@@ -41,7 +44,7 @@ public class AddActivity extends AppCompatActivity {
                     DBHelper db = new DBHelper(AddActivity.this);
                     db.insertTask(name, desc);
                     Calendar cal = Calendar.getInstance();
-                    cal.add(Calendar.SECOND, 5);
+                    cal.add(Calendar.SECOND, Integer.parseInt(time));
 
                     Intent intent = new Intent(AddActivity.this,
                             ScheduledNotificationReceiver.class);
