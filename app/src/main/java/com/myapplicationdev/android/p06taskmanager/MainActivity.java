@@ -15,7 +15,8 @@ public class MainActivity extends AppCompatActivity {
     ListView lv;
     Button btnAdd;
     ArrayList<String> task;
-    ArrayAdapter<String> aa;
+    ArrayList<Task> tasks;
+    ArrayAdapter<Task> aa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         task = new ArrayList<String>();
         DBHelper db = new DBHelper(MainActivity.this);
-        task = db.getTasks();
-        aa = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 ,task);
+        tasks = db.getTasks();
+        aa = new ArrayAdapter<Task>(this, android.R.layout.simple_list_item_1 ,tasks);
         lv.setAdapter(aa);
         aa.notifyDataSetChanged();
 
