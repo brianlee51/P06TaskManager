@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">P06 Task Manager</string>
+    <string name="add">Add Task</string>
 </resources>
