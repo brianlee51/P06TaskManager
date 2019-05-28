@@ -28,6 +28,6 @@ public class Task implements Serializable {
 
     @Override
     public String toString() {
-        return id + task + "\n" + description;
+        return id + " " + task + "\n" + description;
     }
 }

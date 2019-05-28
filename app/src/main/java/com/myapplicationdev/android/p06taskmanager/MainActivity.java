@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
 
     ListView lv;
     Button btnAdd;
-    ArrayList<String> task;
     ArrayList<Task> tasks;
     ArrayAdapter<Task> aa;
 
