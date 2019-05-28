@@ -7,6 +7,9 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
@@ -27,8 +30,11 @@ public class ScheduledNotificationReceiver extends BroadcastReceiver {
 
         Intent i = new Intent(context, MainActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(context, reqCode, i, PendingIntent.FLAG_CANCEL_CURRENT);
-
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "default");
+        Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        builder.setSound(uri);
+        builder.setLights(Color.BLUE, 200, 200);
+        builder.setDefaults(Notification.DEFAULT_LIGHTS);
         builder.setContentTitle("Task Manager Reminder");
         builder.setContentText(name);
         builder.setSmallIcon(android.R.drawable.ic_dialog_info);
